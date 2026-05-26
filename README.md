@@ -81,6 +81,8 @@ An optional dark theme tuned for DataMover scripts, based on a GitHub-style dark
 
 Issues and pull requests welcome. Please open an issue for any DataMover commands that are missing.
 
+[GitHub](https://github.com/RicardoWood/VSCode-DataMover "PeopleSoft DataMover")
+
 ---
 
 Icons by [Icons8](https://icons8.com "Icons8")
