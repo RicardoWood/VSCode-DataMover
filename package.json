@@ -2,7 +2,7 @@
   "name": "peoplesoft-datamover",
   "displayName": "PeopleSoft DataMover",
   "description": "Syntax highlighting for PeopleSoft DataMover (.dms and .dmt) script files",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "publisher": "RichardWood",
   "engines": {
     "vscode": "^1.75.0"
