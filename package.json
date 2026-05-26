@@ -19,7 +19,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/your-username/vscode-peoplesoft-datamover"
+    "url": "https://github.com/RicardoWood/VSCode-DataMover"
   },
   "icon": "icon.png",
   "contributes": {
@@ -54,9 +54,6 @@
     ]
   },
   "main": "./extension.js",
-  "activationEvents": [
-    "onLanguage:datamover"
-  ],
   "devDependencies": {
     "@types/vscode": "^1.75.0",
     "vsce": "^2.15.0"
