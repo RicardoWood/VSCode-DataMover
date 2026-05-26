@@ -37,37 +37,6 @@ An optional dark theme tuned for DataMover scripts, based on a GitHub-style dark
 
 ---
 
-## Installation
-
-### From a `.vsix` file (recommended)
-
-1. Build the extension (see below), or download a pre-built `.vsix`.
-2. In VS Code open the Extensions view (`Ctrl+Shift+X`).
-3. Click the `…` menu → **Install from VSIX…** and select the file.
-
-### Manual (development)
-
-1. Clone or copy the folder to your VS Code extensions directory:
-   - **Windows**: `%USERPROFILE%\.vscode\extensions\peoplesoft-datamover`
-   - **macOS / Linux**: `~/.vscode/extensions/peoplesoft-datamover`
-2. Restart VS Code.
-
----
-
-## Building the `.vsix` Package
-
-```bash
-# Install the VS Code Extension Manager
-npm install -g @vscode/vsce
-
-# From the extension root
-npm install
-vsce package
-# → produces peoplesoft-datamover-1.0.0.vsix
-```
-
----
-
 ## File Types
 
 | Extension | Description |
@@ -110,7 +79,11 @@ vsce package
 
 ## Contributing
 
-Issues and pull requests welcome. Please open an issue for any DataMover commands or PeopleTools records that are missing from the grammar.
+Issues and pull requests welcome. Please open an issue for any DataMover commands that are missing.
+
+---
+
+Icons by [Icons8](https://icons8.com "Icons8")
 
 ---
 
