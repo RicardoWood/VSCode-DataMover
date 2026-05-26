@@ -1,0 +1,48 @@
+REM ============================================================
+REM  PeopleSoft DataMover Script: Export HR Core Tables
+REM  Environment : HRPRD
+REM  Created     : 2024-01-15
+REM  Description : Export key HR configuration tables for
+REM                migration to a fresh target database.
+REM ============================================================
+
+/* Set up logging and file paths */
+SET LOG c:\temp\hr_export.log;
+SET OUTPUT c:\temp\hr_export.dat;
+
+REM -----------------------------------------------------------
+REM Step 1: Export system-wide installation record
+REM -----------------------------------------------------------
+EXPORT PS_INSTALLATION;
+
+REM -----------------------------------------------------------
+REM Step 2: Export HR Foundation tables
+REM -----------------------------------------------------------
+EXPORT PS_DEPT_TBL;
+EXPORT PS_JOBCODE_TBL;
+EXPORT PS_LOCATION_TBL;
+EXPORT PS_COMPANY_TBL;
+EXPORT PS_BUS_UNIT_HR_VW;
+
+REM Conditional export based on database type
+IF #DBTYPE = "ORACLE"
+  EXPORT PS_ORA_SPECIFIC_TBL;
+ELSE
+  EXPORT PS_DB2_SPECIFIC_TBL;
+END-IF
+
+REM -----------------------------------------------------------
+REM Step 3: Export Employee data with WHERE clause
+REM -----------------------------------------------------------
+SET DBNAME HRPRD;
+EXPORT PS_JOB WHERE EFFDT >= '2023-01-01' AND COMPANY = 'GBI';
+
+REM -----------------------------------------------------------
+REM Step 4: Export PeopleTools objects
+REM -----------------------------------------------------------
+EXPORT PSRECDEFN;
+EXPORT PSFIELDDEFN;
+EXPORT PSRECFIELD;
+EXPORT PSOPRDEFN WHERE OPRCLASS = 'ALLPANLS';
+
+STOP;

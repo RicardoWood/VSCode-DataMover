@@ -1,0 +1,163 @@
+{
+  "name": "DataMover Dark",
+  "type": "dark",
+  "colors": {
+    "editor.background": "#0d1117",
+    "editor.foreground": "#c9d1d9",
+    "editorLineNumber.foreground": "#484f58",
+    "editorLineNumber.activeForeground": "#79c0ff",
+    "editor.selectionBackground": "#264f78",
+    "editor.lineHighlightBackground": "#161b22",
+    "editorCursor.foreground": "#58a6ff",
+    "editorIndentGuide.background": "#21262d",
+    "editorIndentGuide.activeBackground": "#30363d"
+  },
+  "tokenColors": [
+    {
+      "name": "Comments",
+      "scope": [
+        "comment.line.rem.datamover",
+        "comment.block.datamover",
+        "comment.line.double-slash.datamover"
+      ],
+      "settings": {
+        "foreground": "#6e7681",
+        "fontStyle": "italic"
+      }
+    },
+    {
+      "name": "Strings",
+      "scope": [
+        "string.quoted.single.datamover",
+        "string.quoted.double.datamover"
+      ],
+      "settings": {
+        "foreground": "#a5d6ff"
+      }
+    },
+    {
+      "name": "String Escapes",
+      "scope": "constant.character.escape.datamover",
+      "settings": {
+        "foreground": "#ffa657"
+      }
+    },
+    {
+      "name": "DataMover Commands (EXPORT, IMPORT, SET, etc.)",
+      "scope": "keyword.control.command.datamover",
+      "settings": {
+        "foreground": "#ff7b72",
+        "fontStyle": "bold"
+      }
+    },
+    {
+      "name": "Control Flow (IF, ELSE, END-IF)",
+      "scope": "keyword.control.flow.datamover",
+      "settings": {
+        "foreground": "#ff7b72",
+        "fontStyle": "bold"
+      }
+    },
+    {
+      "name": "Run Commands",
+      "scope": "keyword.control.run.datamover",
+      "settings": {
+        "foreground": "#d2a8ff",
+        "fontStyle": "bold"
+      }
+    },
+    {
+      "name": "SQL Keywords",
+      "scope": "keyword.other.datamover",
+      "settings": {
+        "foreground": "#79c0ff"
+      }
+    },
+    {
+      "name": "Data Types",
+      "scope": "storage.type.datamover",
+      "settings": {
+        "foreground": "#7ee787"
+      }
+    },
+    {
+      "name": "Built-in Functions",
+      "scope": "support.function.datamover",
+      "settings": {
+        "foreground": "#d2a8ff"
+      }
+    },
+    {
+      "name": "SET Options",
+      "scope": "support.constant.set-option.datamover",
+      "settings": {
+        "foreground": "#ffa657"
+      }
+    },
+    {
+      "name": "Export/Import Parameters",
+      "scope": "variable.parameter.datamover",
+      "settings": {
+        "foreground": "#e3b341"
+      }
+    },
+    {
+      "name": "PS_ Record Names",
+      "scope": "entity.name.type.record.datamover",
+      "settings": {
+        "foreground": "#7ee787",
+        "fontStyle": "italic"
+      }
+    },
+    {
+      "name": "PeopleTools System Records",
+      "scope": "entity.name.type.peoplecode-record.datamover",
+      "settings": {
+        "foreground": "#56d364",
+        "fontStyle": "italic bold"
+      }
+    },
+    {
+      "name": "Comparison Operators",
+      "scope": "keyword.operator.comparison.datamover",
+      "settings": {
+        "foreground": "#ff7b72"
+      }
+    },
+    {
+      "name": "Logical Operators",
+      "scope": "keyword.operator.logical.datamover",
+      "settings": {
+        "foreground": "#79c0ff",
+        "fontStyle": "bold"
+      }
+    },
+    {
+      "name": "Arithmetic Operators",
+      "scope": "keyword.operator.arithmetic.datamover",
+      "settings": {
+        "foreground": "#ff7b72"
+      }
+    },
+    {
+      "name": "Punctuation",
+      "scope": [
+        "punctuation.separator.datamover",
+        "punctuation.section.parens.datamover"
+      ],
+      "settings": {
+        "foreground": "#8b949e"
+      }
+    },
+    {
+      "name": "Numbers",
+      "scope": [
+        "constant.numeric.float.datamover",
+        "constant.numeric.integer.datamover"
+      ],
+      "settings": {
+        "foreground": "#79c0ff"
+      }
+    }
+  ]
+}

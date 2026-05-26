@@ -1,0 +1,64 @@
+{
+  "name": "peoplesoft-datamover",
+  "displayName": "PeopleSoft DataMover",
+  "description": "Syntax highlighting for PeopleSoft DataMover (.dms and .dmt) script files",
+  "version": "1.0.0",
+  "publisher": "Richard Wood",
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Programming Languages"
+  ],
+  "keywords": [
+    "PeopleSoft",
+    "DataMover",
+    "DMS",
+    "DMT",
+    "PeopleTools"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/your-username/vscode-peoplesoft-datamover"
+  },
+  "icon": "icon.png",
+  "contributes": {
+    "languages": [
+      {
+        "id": "datamover",
+        "aliases": [
+          "PeopleSoft DataMover",
+          "DataMover",
+          "DMS"
+        ],
+        "extensions": [
+          ".dms",
+          ".dmt"
+        ],
+        "configuration": "./language-configuration.json"
+      }
+    ],
+    "grammars": [
+      {
+        "language": "datamover",
+        "scopeName": "source.datamover",
+        "path": "./syntaxes/datamover.tmLanguage.json"
+      }
+    ],
+    "themes": [
+      {
+        "label": "DataMover Dark",
+        "uiTheme": "vs-dark",
+        "path": "./themes/datamover-dark.json"
+      }
+    ]
+  },
+  "main": "./extension.js",
+  "activationEvents": [
+    "onLanguage:datamover"
+  ],
+  "devDependencies": {
+    "@types/vscode": "^1.75.0",
+    "vsce": "^2.15.0"
+  }
+}
