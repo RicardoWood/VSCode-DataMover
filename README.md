@@ -25,6 +25,52 @@ Full token-level highlighting for:
 | SET options | Orange |
 | Export/import parameters | Yellow |
 
+### Code Snippets
+
+Type a prefix and press `Tab` (or select from IntelliSense) to expand a snippet. All snippets use tab stops so you can jump between fields with `Tab`.
+
+| Prefix | Expands to |
+|---|---|
+| `header` | Full script header with metadata and log setup |
+| `set-input` | `SET INPUT` path |
+| `set-output` | `SET OUTPUT` path |
+| `set-log` | `SET LOG` path |
+| `set-io` | `SET INPUT`, `OUTPUT`, and `LOG` together |
+| `export` | `EXPORT record;` |
+| `export-where` | `EXPORT record WHERE field = 'value';` |
+| `import` | `IMPORT record;` |
+| `replace-all` | `REPLACE_ALL record;` |
+| `replace-data` | `REPLACE_DATA record;` |
+| `replace-none` | `REPLACE_NONE record;` |
+| `delete-rows` | `DELETE_ROWS record;` |
+| `delete-rows-where` | `DELETE_ROWS record WHERE …;` |
+| `if` | `IF / END-IF` block |
+| `if-else` | `IF / ELSE / END-IF` block |
+| `if-oracle` | Conditional block for Oracle only |
+| `if-mssql` | Conditional block for SQL Server only |
+| `if-db2` | Conditional block for DB2 only |
+| `export-db-specific` | Platform-specific export with nested IF/ELSE |
+| `export-block` | Full export block: SET OUTPUT + EXPORT + STOP |
+| `import-block` | Full import block: SET INPUT + REPLACE + STOP |
+| `export-multi` | Export several records in one block |
+| `migration-template` | Complete migration script scaffold |
+| `export-tools` | Export core PeopleTools definition records |
+| `export-security` | Export security records (operators, roles, permissions) |
+| `export-ui` | Export menu and page definition records |
+| `export-peoplecode` | Export PeopleCode program records |
+| `encrypt-password` | `ENCRYPT_PASSWORD` |
+| `rename` | `RENAME RECORD old AS new;` |
+| `swap-language` | `SWAP_BASE_LANGUAGE` |
+| `rem` | Single REM comment |
+| `rem-section` | Section divider comment block |
+| `block-comment` | `/* … */` multi-line comment |
+| `stop` | `STOP;` |
+| `unicode-on` / `unicode-off` | Enable/disable Unicode mode |
+| `ignore-dups` | `SET IGNORE_DUPS;` |
+| `set-commit` | `SET COMMIT_ENABLED/DISABLED;` |
+| `no-locking` | `SET NO_RECORD_LOCKING;` |
+| `create-table-on` | `SET CREATE_TABLE_ON;` |
+
 ### Hover Documentation
 
 Hover over any DataMover command to see its description, syntax, and an example. Supported commands include:
@@ -80,8 +126,6 @@ An optional dark theme tuned for DataMover scripts, based on a GitHub-style dark
 ## Contributing
 
 Issues and pull requests welcome. Please open an issue for any DataMover commands that are missing.
-
-[GitHub](https://github.com/RicardoWood/VSCode-DataMover "PeopleSoft DataMover")
 
 ---
 
