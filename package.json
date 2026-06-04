@@ -1,14 +1,16 @@
 {
   "name": "peoplesoft-datamover",
   "displayName": "PeopleSoft DataMover",
-  "description": "Syntax highlighting, snippets, and hover docs for PeopleSoft DataMover (.dms and .dmt) script files",
-  "version": "1.1.0",
+  "description": "Syntax highlighting, snippets, linting, code completion, and run commands for PeopleSoft DataMover (.dms and .dmt) script files",
+  "version": "2.0.0",
   "publisher": "RichardWood",
   "engines": {
     "vscode": "^1.75.0"
   },
   "categories": [
-    "Programming Languages"
+    "Programming Languages",
+    "Linters",
+    "Snippets"
   ],
   "keywords": [
     "PeopleSoft",
@@ -21,20 +23,13 @@
     "type": "git",
     "url": "https://github.com/RicardoWood/VSCode-DataMover"
   },
-  "icon": "icon.png",
+  "main": "./extension.js",
   "contributes": {
     "languages": [
       {
         "id": "datamover",
-        "aliases": [
-          "PeopleSoft DataMover",
-          "DataMover",
-          "DMS"
-        ],
-        "extensions": [
-          ".dms",
-          ".dmt"
-        ],
+        "aliases": ["PeopleSoft DataMover", "DataMover", "DMS"],
+        "extensions": [".dms", ".dmt"],
         "configuration": "./language-configuration.json"
       }
     ],
@@ -45,6 +40,12 @@
         "path": "./syntaxes/datamover.tmLanguage.json"
       }
     ],
+    "snippets": [
+      {
+        "language": "datamover",
+        "path": "./snippets/datamover.json"
+      }
+    ],
     "themes": [
       {
         "label": "DataMover Dark",
@@ -52,14 +53,118 @@
         "path": "./themes/datamover-dark.json"
       }
     ],
-    "snippets": [
+    "commands": [
       {
-        "language": "datamover",
-        "path": "./snippets/datamover.json"
+        "command": "datamover.runScript",
+        "title": "DataMover: Run Script",
+        "icon": "$(play)"
+      },
+      {
+        "command": "datamover.runScriptWithEnv",
+        "title": "DataMover: Run Script (pick environment)",
+        "icon": "$(server-environment)"
+      },
+      {
+        "command": "datamover.newScript",
+        "title": "DataMover: New Script from Template"
       }
-    ]
+    ],
+    "menus": {
+      "editor/title": [
+      {
+          "command": "datamover.runScript",
+          "when": "resourceLangId == datamover",
+          "group": "navigation"
+        }
+      ],
+      "editor/context": [
+        {
+          "command": "datamover.runScript",
+          "when": "resourceLangId == datamover",
+          "group": "datamover@1"
+        },
+        {
+          "command": "datamover.runScriptWithEnv",
+          "when": "resourceLangId == datamover",
+          "group": "datamover@2"
+        }
+      ],
+      "explorer/context": [
+        {
+          "command": "datamover.runScript",
+          "when": "resourceExtname == .dms || resourceExtname == .dmt",
+          "group": "datamover@1"
+        }
+      ]
+    },
+    "keybindings": [
+      {
+        "command": "datamover.runScript",
+        "key": "ctrl+f5",
+        "when": "resourceLangId == datamover"
+      },
+      {
+        "command": "datamover.runScriptWithEnv",
+        "key": "ctrl+shift+f5",
+        "when": "resourceLangId == datamover"
+      }
+    ],
+    "configuration": {
+      "title": "PeopleSoft DataMover",
+      "properties": {
+        "datamover.psdmtxPath": {
+          "type": "string",
+          "default": "",
+          "description": "Full path to the psdmtx executable (e.g. C:\\PT\\bin\\client\\winx86\\psdmtx.exe)"
+        },
+        "datamover.environments": {
+          "type": "array",
+          "default": [],
+          "description": "List of saved PeopleSoft environments for quick run",
+          "items": {
+            "type": "object",
+            "properties": {
+              "name":     { "type": "string", "description": "Friendly name (e.g. HR DEV)" },
+              "dbType":   { "type": "string", "enum": ["ORACLE", "MICROSFT", "DB2UNIX", "DB2ODBC"], "description": "Database platform" },
+              "dbName":   { "type": "string", "description": "Database / server name" },
+              "userId":   { "type": "string", "description": "PeopleSoft operator ID" },
+              "password": { "type": "string", "description": "Operator password (stored in VS Code secret storage)" }
+            }
+          }
+        },
+        "datamover.lint.missingSetOutput": {
+          "type": "boolean",
+          "default": true,
+          "description": "Warn when EXPORT is used but SET OUTPUT has not been specified"
+        },
+        "datamover.lint.missingSetInput": {
+          "type": "boolean",
+          "default": true,
+          "description": "Warn when IMPORT/REPLACE is used but SET INPUT has not been specified"
+        },
+        "datamover.lint.missingSemicolon": {
+          "type": "boolean",
+          "default": true,
+          "description": "Error when a statement appears to be missing its trailing semicolon"
+        },
+        "datamover.lint.unclosedIfBlock": {
+          "type": "boolean",
+          "default": true,
+          "description": "Error when an IF block is not closed with END-IF"
+        },
+        "datamover.lint.duplicateExport": {
+          "type": "boolean",
+          "default": true,
+          "description": "Warn when the same record is exported more than once"
+        },
+        "datamover.lint.replaceAllWithoutInput": {
+          "type": "boolean",
+          "default": true,
+          "description": "Warn when REPLACE_ALL is used without a preceding SET INPUT"
+        }
+      }
+    }
   },
-  "main": "./extension.js",
   "devDependencies": {
     "@types/vscode": "^1.75.0",
     "vsce": "^2.15.0"

@@ -1,7 +1,7 @@
 {
   "Script Header": {
     "prefix": "header",
-    "description": "Standard DataMover script header with metadata",
+    "description": "Standard script header",
     "body": [
       "REM ============================================================",
       "REM  Script      : ${1:script_name}.dms",
@@ -9,40 +9,14 @@
       "REM  Author      : ${3:Your Name}",
       "REM  Date        : ${CURRENT_YEAR}-${CURRENT_MONTH}-${CURRENT_DATE}",
       "REM  Description : ${4:Describe what this script does}",
-      "REM  PeopleTools : ${5:8.62}",
       "REM ============================================================",
       "",
-      "SET LOG ${6:c:\\temp\\}${1}.log;",
+      "SET LOG ${5:c:\\temp\\}${1}.log;",
       "",
       "$0"
     ]
   },
-
-  "Set Input File": {
-    "prefix": "set-input",
-    "description": "SET INPUT — specify the import data file path",
-    "body": [
-      "SET INPUT ${1:c:\\temp\\}${2:data.dat};"
-    ]
-  },
-
-  "Set Output File": {
-    "prefix": "set-output",
-    "description": "SET OUTPUT — specify the export data file path",
-    "body": [
-      "SET OUTPUT ${1:c:\\temp\\}${2:data.dat};"
-    ]
-  },
-
-  "Set Log File": {
-    "prefix": "set-log",
-    "description": "SET LOG — specify the log file path",
-    "body": [
-      "SET LOG ${1:c:\\temp\\}${2:datamover}.log;"
-    ]
-  },
-
-  "Set Input Output Log": {
+  "Set Input/Output/Log": {
     "prefix": "set-io",
     "description": "SET INPUT, OUTPUT and LOG together",
     "body": [
@@ -52,131 +26,42 @@
       "$0"
     ]
   },
-
   "Export Record": {
     "prefix": "export",
-    "description": "EXPORT a single record",
-    "body": [
-      "EXPORT ${1:PS_RECORD_NAME};"
-    ]
+    "description": "EXPORT a record",
+    "body": ["EXPORT ${1:PS_RECORD_NAME};"]
   },
-
-  "Export Record with WHERE": {
+  "Export with WHERE": {
     "prefix": "export-where",
-    "description": "EXPORT a record with a WHERE clause",
-    "body": [
-      "EXPORT ${1:PS_RECORD_NAME} WHERE ${2:FIELD_NAME} = '${3:value}';"
-    ]
+    "description": "EXPORT with WHERE clause",
+    "body": ["EXPORT ${1:PS_RECORD_NAME} WHERE ${2:FIELD} = '${3:value}';"]
   },
-
   "Import Record": {
     "prefix": "import",
-    "description": "IMPORT a single record",
-    "body": [
-      "IMPORT ${1:PS_RECORD_NAME};"
-    ]
+    "description": "IMPORT a record",
+    "body": ["IMPORT ${1:PS_RECORD_NAME};"]
   },
-
-  "Replace All": {
-    "prefix": "replace-all",
-    "description": "REPLACE_ALL — delete existing rows then import",
-    "body": [
-      "REPLACE_ALL ${1:PS_RECORD_NAME};"
-    ]
-  },
-
-  "Replace Data": {
-    "prefix": "replace-data",
-    "description": "REPLACE_DATA — replace matching rows, keep others",
-    "body": [
-      "REPLACE_DATA ${1:PS_RECORD_NAME};"
-    ]
-  },
-
-  "Replace None": {
-    "prefix": "replace-none",
-    "description": "REPLACE_NONE — insert only, do not overwrite existing rows",
-    "body": [
-      "REPLACE_NONE ${1:PS_RECORD_NAME};"
-    ]
-  },
-
-  "Delete Rows": {
-    "prefix": "delete-rows",
-    "description": "DELETE_ROWS — remove all rows from a record",
-    "body": [
-      "DELETE_ROWS ${1:PS_RECORD_NAME};"
-    ]
-  },
-
-  "Delete Rows with WHERE": {
+  "Replace All": { "prefix": "replace-all",  "body": ["REPLACE_ALL ${1:PS_RECORD_NAME};"] },
+  "Replace Data": { "prefix": "replace-data", "body": ["REPLACE_DATA ${1:PS_RECORD_NAME};"] },
+  "Replace None": { "prefix": "replace-none", "body": ["REPLACE_NONE ${1:PS_RECORD_NAME};"] },
+  "Delete Rows": { "prefix": "delete-rows",   "body": ["DELETE_ROWS ${1:PS_RECORD_NAME};"] },
+  "Delete Rows WHERE": {
     "prefix": "delete-rows-where",
-    "description": "DELETE_ROWS with a WHERE clause",
-    "body": [
-      "DELETE_ROWS ${1:PS_RECORD_NAME} WHERE ${2:FIELD_NAME} = '${3:value}';"
-    ]
+    "body": ["DELETE_ROWS ${1:PS_RECORD_NAME} WHERE ${2:FIELD} = '${3:value}';"]
   },
-
   "IF Block": {
     "prefix": "if",
-    "description": "IF / END-IF conditional block",
-    "body": [
-      "IF ${1:condition}",
-      "   ${2:statement};",
-      "END-IF",
-      "$0"
-    ]
+    "body": ["IF ${1:condition}", "   ${2:EXPORT PS_RECORD_NAME;}", "END-IF", "$0"]
   },
-
   "IF ELSE Block": {
     "prefix": "if-else",
-    "description": "IF / ELSE / END-IF conditional block",
-    "body": [
-      "IF ${1:condition}",
-      "   ${2:statement};",
-      "ELSE",
-      "   ${3:statement};",
-      "END-IF",
-      "$0"
-    ]
+    "body": ["IF ${1:condition}", "   ${2:statement;}", "ELSE", "   ${3:statement;}", "END-IF", "$0"]
   },
-
-  "IF DBTYPE Oracle": {
-    "prefix": "if-oracle",
-    "description": "Conditional block that runs only on Oracle",
-    "body": [
-      "IF #DBTYPE = \"ORACLE\"",
-      "   ${1:statement};",
-      "END-IF",
-      "$0"
-    ]
-  },
-
-  "IF DBTYPE SQL Server": {
-    "prefix": "if-mssql",
-    "description": "Conditional block that runs only on Microsoft SQL Server",
-    "body": [
-      "IF #DBTYPE = \"MICROSFT\"",
-      "   ${1:statement};",
-      "END-IF",
-      "$0"
-    ]
-  },
-
-  "IF DBTYPE DB2": {
-    "prefix": "if-db2",
-    "description": "Conditional block that runs only on DB2",
-    "body": [
-      "IF #DBTYPE = \"DB2UNIX\"",
-      "   ${1:statement};",
-      "END-IF",
-      "$0"
-    ]
-  },
-
-  "Export Block — Full Pattern": {
+  "IF Oracle": { "prefix": "if-oracle", "body": ["IF #DBTYPE = \"ORACLE\"", "   ${1:EXPORT PS_RECORD_NAME;}", "END-IF", "$0"] },
+  "IF MSSQL":  { "prefix": "if-mssql",  "body": ["IF #DBTYPE = \"MICROSFT\"", "   ${1:EXPORT PS_RECORD_NAME;}", "END-IF", "$0"] },
+  "IF DB2":    { "prefix": "if-db2",    "body": ["IF #DBTYPE = \"DB2UNIX\"",  "   ${1:EXPORT PS_RECORD_NAME;}", "END-IF", "$0"] },
+  "Full Export Block": {
     "prefix": "export-block",
-    "description": "Full export block: set output, export records, stop",
     "body": [
       "REM --- Export ${1:description} ---",
       "SET OUTPUT ${2:c:\\temp\\}${3:export}.dat;",
@@ -188,10 +73,8 @@
       "STOP;"
     ]
   },
-
-  "Import Block — Full Pattern": {
+  "Full Import Block": {
     "prefix": "import-block",
-    "description": "Full import block: set input, import records, stop",
     "body": [
       "REM --- Import ${1:description} ---",
       "SET INPUT ${2:c:\\temp\\}${3:export}.dat;",
@@ -203,223 +86,27 @@
       "STOP;"
     ]
   },
-
-  "Export Multiple Records": {
-    "prefix": "export-multi",
-    "description": "Export several records in one block",
-    "body": [
-      "REM --- Export ${1:module} records ---",
-      "EXPORT ${2:PS_RECORD_ONE};",
-      "EXPORT ${3:PS_RECORD_TWO};",
-      "EXPORT ${4:PS_RECORD_THREE};",
-      "$0"
-    ]
-  },
-
-  "Encrypt Password": {
-    "prefix": "encrypt-password",
-    "description": "ENCRYPT_PASSWORD — encrypt a plain-text access password",
-    "body": [
-      "ENCRYPT_PASSWORD ${1:plain_text_password};"
-    ]
-  },
-
-  "Rename Record": {
-    "prefix": "rename",
-    "description": "RENAME a record in the database",
-    "body": [
-      "RENAME RECORD ${1:OLD_RECORD_NAME} AS ${2:NEW_RECORD_NAME};"
-    ]
-  },
-
-  "Swap Base Language": {
-    "prefix": "swap-language",
-    "description": "SWAP_BASE_LANGUAGE — swap the database base language",
-    "body": [
-      "SWAP_BASE_LANGUAGE ${1:ENG};"
-    ]
-  },
-
-  "REM Comment Line": {
-    "prefix": "rem",
-    "description": "Single REM comment line",
-    "body": [
-      "REM ${1:comment};"
-    ]
-  },
-
-  "REM Section Divider": {
-    "prefix": "rem-section",
-    "description": "Section divider comment block",
-    "body": [
-      "REM -----------------------------------------------------------",
-      "REM ${1:Section Title}",
-      "REM -----------------------------------------------------------",
-      "$0"
-    ]
-  },
-
-  "Block Comment": {
-    "prefix": "block-comment",
-    "description": "Multi-line block comment",
-    "body": [
-      "/*",
-      " * ${1:Comment text}",
-      " */",
-      "$0"
-    ]
-  },
-
-  "Stop": {
-    "prefix": "stop",
-    "description": "STOP — halt script execution",
-    "body": [
-      "STOP;"
-    ]
-  },
-
-  "Export PeopleTools Objects": {
+  "Export PeopleTools": {
     "prefix": "export-tools",
-    "description": "Export common PeopleTools definition records",
-    "body": [
-      "REM --- PeopleTools Definitions ---",
-      "EXPORT PSRECDEFN;",
-      "EXPORT PSFIELDDEFN;",
-      "EXPORT PSRECFIELD;",
-      "EXPORT PSDBFIELD;",
-      "EXPORT PSDBRECORD;",
-      "$0"
-    ]
+    "body": ["REM --- PeopleTools ---","EXPORT PSRECDEFN;","EXPORT PSFIELDDEFN;","EXPORT PSRECFIELD;","EXPORT PSDBFIELD;","EXPORT PSDBRECORD;","$0"]
   },
-
-  "Export Security Records": {
+  "Export Security": {
     "prefix": "export-security",
-    "description": "Export PeopleSoft security-related records",
-    "body": [
-      "REM --- Security Records ---",
-      "EXPORT PSOPRDEFN;",
-      "EXPORT PSROLEDEFN;",
-      "EXPORT PSROLEUSER;",
-      "EXPORT PSAUTHITEM;",
-      "EXPORT PSPERMLIST;",
-      "$0"
-    ]
+    "body": ["REM --- Security ---","EXPORT PSOPRDEFN;","EXPORT PSROLEDEFN;","EXPORT PSROLEUSER;","EXPORT PSAUTHITEM;","EXPORT PSPERMLIST;","$0"]
   },
-
-  "Export Menu and Panel Definitions": {
-    "prefix": "export-ui",
-    "description": "Export menu and panel (page) definition records",
-    "body": [
-      "REM --- UI Definitions ---",
-      "EXPORT PSMENUDEFN;",
-      "EXPORT PSMENUITEM;",
-      "EXPORT PSPNLDEFN;",
-      "EXPORT PSPNLFIELD;",
-      "EXPORT PSPNLGRPDEFN;",
-      "$0"
-    ]
-  },
-
   "Export PeopleCode": {
     "prefix": "export-peoplecode",
-    "description": "Export PeopleCode program records",
-    "body": [
-      "REM --- PeopleCode ---",
-      "EXPORT PSPCMPROG;",
-      "EXPORT PSPCMTXT;",
-      "$0"
-    ]
+    "body": ["REM --- PeopleCode ---","EXPORT PSPCMPROG;","EXPORT PSPCMTXT;","$0"]
   },
-
-  "Database-Specific Export Block": {
-    "prefix": "export-db-specific",
-    "description": "Export different records depending on the database platform",
-    "body": [
-      "IF #DBTYPE = \"ORACLE\"",
-      "   EXPORT ${1:PS_ORA_RECORD};",
-      "ELSE",
-      "   IF #DBTYPE = \"MICROSFT\"",
-      "      EXPORT ${2:PS_MSSQL_RECORD};",
-      "   ELSE",
-      "      EXPORT ${3:PS_DB2_RECORD};",
-      "   END-IF",
-      "END-IF",
-      "$0"
-    ]
+  "REM Divider": {
+    "prefix": "rem-section",
+    "body": ["REM -----------------------------------------------------------","REM ${1:Section Title}","REM -----------------------------------------------------------","$0"]
   },
-
-  "Migration Script Template": {
-    "prefix": "migration-template",
-    "description": "Full migration script: export from source, import to target",
-    "body": [
-      "REM ============================================================",
-      "REM  Migration   : ${1:Object/Module Name}",
-      "REM  From        : ${2:Source Env}  →  To: ${3:Target Env}",
-      "REM  Author      : ${4:Your Name}",
-      "REM  Date        : ${CURRENT_YEAR}-${CURRENT_MONTH}-${CURRENT_DATE}",
-      "REM ============================================================",
-      "",
-      "REM --- Phase 1: Export ---",
-      "SET OUTPUT ${5:c:\\temp\\}${1}_export.dat;",
-      "SET LOG    ${5}${1}_export.log;",
-      "",
-      "EXPORT ${6:PS_RECORD_NAME};",
-      "$0",
-      "",
-      "REM --- Phase 2: Import (run separately on target) ---",
-      "REM SET INPUT ${5}${1}_export.dat;",
-      "REM SET LOG   ${5}${1}_import.log;",
-      "REM REPLACE_ALL ${6};",
-      "",
-      "STOP;"
-    ]
-  },
-
-  "Unicode Enable": {
-    "prefix": "unicode-on",
-    "description": "Enable Unicode mode for the script",
-    "body": [
-      "SET UNICODE_ENABLE;"
-    ]
-  },
-
-  "Unicode Disable": {
-    "prefix": "unicode-off",
-    "description": "Disable Unicode mode for the script",
-    "body": [
-      "SET UNICODE_DISABLE;"
-    ]
-  },
-
-  "Set Ignore Duplicates": {
-    "prefix": "ignore-dups",
-    "description": "Ignore duplicate key errors during import",
-    "body": [
-      "SET IGNORE_DUPS;"
-    ]
-  },
-
-  "Set Commit": {
-    "prefix": "set-commit",
-    "description": "Enable or disable commit during import",
-    "body": [
-      "SET COMMIT_${1|ENABLED,DISABLED|};"
-    ]
-  },
-
-  "Set No Record Locking": {
-    "prefix": "no-locking",
-    "description": "Disable record locking during import for better performance",
-    "body": [
-      "SET NO_RECORD_LOCKING;"
-    ]
-  },
-
-  "Create Table On": {
-    "prefix": "create-table-on",
-    "description": "Automatically create tables during import if they do not exist",
-    "body": [
-      "SET CREATE_TABLE_ON;"
-    ]
-  }
+  "Block Comment": { "prefix": "block-comment", "body": ["/*"," * ${1:Comment}", " */","$0"] },
+  "Stop":           { "prefix": "stop",          "body": ["STOP;"] },
+  "Encrypt Password": { "prefix": "encrypt-password", "body": ["ENCRYPT_PASSWORD ${1:password};"] },
+  "Set No Locking": { "prefix": "no-locking", "body": ["SET NO_RECORD_LOCKING;"] },
+  "Set Ignore Dups": { "prefix": "ignore-dups", "body": ["SET IGNORE_DUPS;"] },
+  "Unicode On":  { "prefix": "unicode-on",  "body": ["SET UNICODE_ENABLE;"] },
+  "Unicode Off": { "prefix": "unicode-off", "body": ["SET UNICODE_DISABLE;"] }
 }
