@@ -3,22 +3,18 @@
     "lineComment": "REM",
     "blockComment": ["/*", "*/"]
   },
-  "brackets": [
-    ["(", ")"]
-  ],
+  "brackets": [["(", ")"]],
   "autoClosingPairs": [
     { "open": "(", "close": ")" },
     { "open": "'", "close": "'", "notIn": ["string"] },
     { "open": "\"", "close": "\"", "notIn": ["string"] }
   ],
-  "surroundingPairs": [
-    ["(", ")"],
-    ["'", "'"],
-    ["\"", "\""]
-  ],
-  "wordPattern": "[a-zA-Z_][a-zA-Z0-9_]*",
-  "indentationRules": {
-    "increaseIndentPattern": "",
-    "decreaseIndentPattern": ""
+  "surroundingPairs": [["(", ")"], ["'", "'"], ["\"", "\""]],
+  "wordPattern": "[a-zA-Z_#][a-zA-Z0-9_-]*",
+  "folding": {
+    "markers": {
+      "start": "(?i)^\\s*IF\\b",
+      "end":   "(?i)^\\s*END-IF\\b"
+    }
   }
 }

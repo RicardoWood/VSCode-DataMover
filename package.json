@@ -2,7 +2,7 @@
   "name": "peoplesoft-datamover",
   "displayName": "PeopleSoft DataMover",
   "description": "Syntax highlighting, snippets, linting, code completion, and run commands for PeopleSoft DataMover (.dms and .dmt) script files",
-  "version": "2.0.0",
+  "version": "2.0.3",
   "publisher": "RichardWood",
   "engines": {
     "vscode": "^1.75.0"
@@ -24,6 +24,7 @@
     "url": "https://github.com/RicardoWood/VSCode-DataMover"
   },
   "main": "./extension.js",
+  "icon": "./icon.png",
   "contributes": {
     "languages": [
       {

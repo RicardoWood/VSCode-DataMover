@@ -1,4 +1,4 @@
-# PeopleSoft DataMover — VS Code Extension v2.0.0
+# PeopleSoft DataMover — VS Code Extension v2.0.3
 
 Full IDE support for PeopleSoft DataMover script files (`.dms` and `.dmt`): syntax highlighting, snippets, linting, code completion, a run command, and script templates.
 
@@ -109,28 +109,6 @@ Six built-in templates, each prompting for script name, author, description, and
 
 ---
 
-## Installation
-
-### From a `.vsix` file
-1. Extensions panel (`Ctrl+Shift+X`) → `…` → **Install from VSIX…**
-2. Select the `.vsix` file.
-
-### Manual (development / no build tools)
-1. Copy the `vscode-datamover` folder to your extensions directory:
-   - **Windows**: `%USERPROFILE%\.vscode\extensions\`
-   - **macOS/Linux**: `~/.vscode/extensions/`
-2. Restart VS Code.
-
-### Build a `.vsix` to share
-```bash
-npm install -g @vscode/vsce
-npm install
-vsce package
-# → peoplesoft-datamover-2.0.0.vsix
-```
-
----
-
 ## Settings Reference
 
 | Setting | Default | Description |
@@ -157,6 +135,10 @@ vsce package
 
 ## Changelog
 
+### v2.0.3
+- Very minor changes to the readme
+- Added the extension icon, after v2.0.0 removed it
+
 ### v2.0.0
 - Added real-time **linting** with 6 configurable rules
 - Added **IntelliSense** code completion for commands, SET options, record names, and SQL
@@ -175,3 +157,7 @@ vsce package
 
 ## License
 MIT
+
+---
+
+Icons by [Icons8](https://icons8.com "Icons8")
